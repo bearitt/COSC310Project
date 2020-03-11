@@ -1,5 +1,9 @@
 
+//TODO: Fix jankiness of for loops. Maybe java map and filter?
+//https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
+
 public class Question {
+	private static String notUnderstood = "I'm sorry, I don't understand the question.";
 	static boolean isQuestion(String query) {
 		if(query.substring(query.length()-1).contentEquals("?"))
 			return true;
@@ -8,7 +12,6 @@ public class Question {
 	static String getQuestionType(String question) {
 		String[] questionSplit = question.split(" ");
 		String response;
-		String notUnderstood = "I'm sorry, I don't understand the question.";
 		switch(questionSplit[0].toLowerCase()) {
 		case "where":
 			response=whereQuestion(question);
@@ -26,7 +29,7 @@ public class Question {
 			response=whoQuestion(question);
 			break;
 		default:
-			response=notUnderstood;
+			response=otherQuestion(question);
 			break;
 		}
 		return response;
@@ -35,22 +38,66 @@ public class Question {
 	static void askQ() {}
 	
 	private static String whereQuestion(String question) {
-		return "Where";
+		String[] questionSplit = question.split("[ ,.?;:]+");
+		
+		for(int i=0;i<questionSplit.length;++i) {
+			if(questionSplit[i].contentEquals("store") || questionSplit[i].contentEquals("located")
+					|| questionSplit[i].contentEquals("location") || questionSplit[i].contentEquals("you"))
+				return "We are located at 92 Baker Street.";
+		}
+		
+		return notUnderstood;
 	}
 	
 	private static String whatQuestion(String question) {
-		return "What";
+		String[] questionSplit = question.split("[ ,.?;:]+");
+		
+		for(int i=0;i<questionSplit.length;++i) {
+			if(questionSplit[i].contentEquals("phone"))
+				return "Our customer service number is 123-456-7890";
+		}
+		
+		for(int i=0;i<questionSplit.length;++i) {
+			if(questionSplit[i].contentEquals("time") || questionSplit[i].contentEquals("open"))
+				return "We are open from 8am to 10pm, Monday to Sunday.";
+		}
+		
+		return notUnderstood;
 	}
 	private static String howQuestion(String question) {
-		return "How";
+		String[] questionSplit = question.split("[ ,.?;:]+");
+		if(questionSplit[1].contentEquals("are") && questionSplit[2].contentEquals("you"))
+			return "I'm good!";
+		else {
+			for(int i=0;i<questionSplit.length;++i) {
+				if(questionSplit[i].contentEquals("service") || questionSplit[i].contentEquals("contact"))
+					return "Our customer service number is 123-456-7890";
+			}
+		}
+		return notUnderstood;
 	}
 	private static String whenQuestion(String question) {
-		return "When";
+		String[] questionSplit = question.split("[ ,.?;:]+");
+		for(int i=0;i<questionSplit.length;++i) {
+			if(questionSplit[i].contentEquals("open"))
+				return "We are open from 8am to 10pm, Monday to Sunday.";
+		}
+		
+		return notUnderstood;
 	}
 	private static String whoQuestion(String question) {
-		if(question.substring(question.length()-4).equals("you?"))
+		String[] questionSplit = question.split("[ ,.?;:]+");
+		if(questionSplit[questionSplit.length-1].contentEquals("you"))//question.substring(question.length()-4).equals("you?"))
 			return "I'm everyone's favourite chatbot!";
-		return "Who";
+		return notUnderstood;
 	}
 
+	private static String otherQuestion(String question) {
+		String[] questionSplit = question.split("[ ,.?;:]+");
+		for(int i=0;i<questionSplit.length;++i) {
+			if(questionSplit[i].contentEquals("open"))
+				return "We are open from 8am to 10pm, Monday to Sunday.";
+		}
+		return notUnderstood;
+	}
 }
