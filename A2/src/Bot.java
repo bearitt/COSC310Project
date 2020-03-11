@@ -5,7 +5,9 @@ public class Bot {
 	
 	public void receiveQuery(String query) {
 		String response;
-		if(isQuestion(query))
+		if(query.toLowerCase().contentEquals("help"))
+			response = help();
+		else if(isQuestion(query))
 			response = getQuestionType(query);
 		else
 			response = respond(query);
@@ -30,6 +32,9 @@ public class Bot {
 		case "when":
 			response=whenQuestion(question);
 			break;
+		case "who":
+			response=whoQuestion(question);
+			break;
 		default:
 			response=notUnderstood;
 			break;
@@ -46,21 +51,32 @@ public class Bot {
 	}
 	
 	public String whereQuestion(String question) {
-		return "hi";
+		return "Where";
 	}
 	
 	public String whatQuestion(String question) {
-		return "hi";
+		return "What";
 	}
 	public String howQuestion(String question) {
-		return "hi";
+		return "How";
 	}
 	public String whenQuestion(String question) {
-		return "hi";
+		return "When";
+	}
+	public String whoQuestion(String question) {
+		return "Who";
 	}
 	
 	public String respond(String query) {
 		return "hi not a question";
+	}
+	
+	public String help() {
+		String help = "Type directly into the terminal anything you want to say to the me.\n"
+				+"Questions must start with \"Where\", \"What\", \"How\" or \"When\".\n"
+				+ "To exit the program, say \"Bye\" to the me."
+				;
+		return help;
 	}
 	
 	public void delayResponse() {
