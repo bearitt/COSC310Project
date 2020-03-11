@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 
 //TODO: Fix jankiness of for loops. Maybe java map and filter?
 //https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
 
 public class Question {
+	private static ArrayList<String> products = Products.getProducts();
+	
 	private static String notUnderstood = "I'm sorry, I don't understand the question.";
 	static boolean isQuestion(String query) {
 		if(query.substring(query.length()-1).contentEquals("?"))
@@ -34,8 +37,6 @@ public class Question {
 		}
 		return response;
 	}
-	static void sendA() {}
-	static void askQ() {}
 	
 	private static String whereQuestion(String question) {
 		String[] questionSplit = question.split("[ ,.?;:]+");
@@ -60,6 +61,18 @@ public class Question {
 		for(int i=0;i<questionSplit.length;++i) {
 			if(questionSplit[i].contentEquals("time") || questionSplit[i].contentEquals("open"))
 				return "We are open from 8am to 10pm, Monday to Sunday.";
+		}
+		
+		for(int i=0;i<questionSplit.length;++i) {
+			if(questionSplit[i].contentEquals("products") 
+					|| questionSplit[i].contentEquals("sale") || questionSplit[i].contentEquals("sell")
+					|| questionSplit[i].contentEquals("buy")) {
+				String availProd = "We have the following for sale: \n";
+				for(int j=0;j<products.size();++j) {
+					availProd+=products.get(j) + "\n";
+				}
+				return availProd;
+			}	
 		}
 		
 		return notUnderstood;
@@ -97,6 +110,17 @@ public class Question {
 		for(int i=0;i<questionSplit.length;++i) {
 			if(questionSplit[i].contentEquals("open"))
 				return "We are open from 8am to 10pm, Monday to Sunday.";
+		}
+		for(int i=0;i<questionSplit.length;++i) {
+			if(questionSplit[i].contentEquals("products") 
+					|| questionSplit[i].contentEquals("sale") || questionSplit[i].contentEquals("sell")
+					|| questionSplit[i].contentEquals("buy")) {
+				String availProd = "We have the following for sale: \n";
+				for(int j=0;j<products.size();++j) {
+					availProd+=products.get(j) + "\n";
+				}
+				return availProd;
+			}	
 		}
 		return notUnderstood;
 	}
