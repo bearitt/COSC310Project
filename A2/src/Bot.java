@@ -7,21 +7,13 @@ public class Bot {
 		String response;
 		query = query.toLowerCase();
 		if(query.equals("help"))
-			response = help();
-		else if(Questions.isQuestion(query))
-			response = Questions.getQuestionType(query);
+			response = Response.help();
+		else if(Question.isQuestion(query))
+			response = Question.getQuestionType(query);
 		else
 			response = Response.respond(query);
 		delayResponse();
 		console.printf(response + "\n");
-	}
-	
-	private String help() {
-		String help = "Type directly into the terminal anything you want to say to the me.\n"
-				+"Questions must start with \"Where\", \"What\", \"How\" or \"When\".\n"
-				+ "To exit the program, say \"Bye\" to me."
-				;
-		return help;
 	}
 	
 	private void delayResponse() {
@@ -29,7 +21,7 @@ public class Bot {
 		console.printf("Chatbot: ");
 		console.printf(".  ");
 		try {
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < 10; i++) {
 				Thread.sleep(150);
 				console.printf("%s", spinner[i % spinner.length]);
 			}

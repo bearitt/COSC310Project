@@ -1,6 +1,6 @@
 import java.io.Console;
 
-public class Greetings {
+public class Greeting {
 	
 	public static String hello() {
 		return "Hi! Thanks for chatting with me, what can I help you with?";
@@ -17,9 +17,10 @@ public class Greetings {
 		try {
 			console.printf("Chatbot: Thanks for chatting with me, goodbye!\n"
 					+ "Exiting program in 5 seconds");
+			Thread.sleep(1000);
 			for (int i = 0; i < 4; i++) {
-				Thread.sleep(1000);
 				console.printf("%s", spinner[i]);
+				Thread.sleep(1000);
 			}
 		} catch(InterruptedException e) {
 			console.printf("Sorry, something went wrong on our end! Closing program...");

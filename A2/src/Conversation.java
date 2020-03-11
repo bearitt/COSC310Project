@@ -14,7 +14,7 @@ public class Conversation {
 			console.printf("You: ");
 			question = in.nextLine().toLowerCase();
 		}
-		Greetings.goodbye();	
+		Greeting.goodbye();	
 		
 		in.close();
 	}

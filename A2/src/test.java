@@ -12,7 +12,7 @@ public class test {
 		String[] greetings = {"Hello", "Hi", "Hey"};
 		for(String e:greetings) {
 			if(e.contentEquals(query))
-				System.out.println(Greetings.hello());
+				System.out.println(Greeting.hello());
 			else
 				System.out.println("Nope");
 		}

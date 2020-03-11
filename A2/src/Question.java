@@ -1,5 +1,10 @@
 
-public class Questions {
+public class Question {
+	static boolean isQuestion(String query) {
+		if(query.substring(query.length()-1).contentEquals("?"))
+			return true;
+		return false;
+	}
 	static String getQuestionType(String question) {
 		String[] questionSplit = question.split(" ");
 		String response;
@@ -28,12 +33,6 @@ public class Questions {
 	}
 	static void sendA() {}
 	static void askQ() {}
-	
-	static boolean isQuestion(String query) {
-		if(query.substring(query.length()-1).contentEquals("?"))
-			return true;
-		return false;
-	}
 	
 	private static String whereQuestion(String question) {
 		return "Where";
