@@ -9,7 +9,7 @@ public class Conversation {
 
 		Scanner in = new Scanner(System.in);
 		String question = in.nextLine();
-		chatbot.receiveQ(question);
+		chatbot.receiveQuery(question);
 		
 		in.close();
 	}
