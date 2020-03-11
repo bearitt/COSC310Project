@@ -5,16 +5,14 @@ public class Conversation {
 	public static void main(String[] args) {
 		Bot chatbot = new Bot();
 		Console console = System.console();
-		String bye = "Bye";
-		String goodbye = "Goodbye";
 		console.printf("Enter your question (type \"Help\" for more information): ");
 		Scanner in = new Scanner(System.in);
-		String question = in.nextLine();
+		String question = in.nextLine().toLowerCase();
 		try {
-			while(!question.equalsIgnoreCase(bye) || !question.equalsIgnoreCase(goodbye)) {
+			while(!question.contentEquals("bye") && !question.contentEquals("goodbye")) {
 				chatbot.receiveQuery(question);
 				console.printf("You: ");
-				question = in.nextLine();
+				question = in.nextLine().toLowerCase();
 			}
 			
 			String[] spinner = new String[] { 

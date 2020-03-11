@@ -1,3 +1,3 @@
 #!/bin/sh
-javac ./Conversation.java
-java ./Conversation
+javac Conversation.java
+java Conversation

@@ -16,7 +16,7 @@ public class Bot {
 		console.printf(response + "\n");
 	}
 	
-	public String getQuestionType(String question) {
+	private String getQuestionType(String question) {
 		String[] questionSplit = question.split(" ");
 		String response;
 		String notUnderstood = "I'm sorry, I don't understand the question.";
@@ -42,47 +42,47 @@ public class Bot {
 		}
 		return response;
 	}
-	public void sendA() {}
-	public void askQ() {}
+	private void sendA() {}
+	private void askQ() {}
 	
-	public boolean isQuestion(String query) {
+	private boolean isQuestion(String query) {
 		if(query.substring(query.length()-1).contentEquals("?"))
 			return true;
 		return false;
 	}
 	
-	public String whereQuestion(String question) {
+	private String whereQuestion(String question) {
 		return "Where";
 	}
 	
-	public String whatQuestion(String question) {
+	private String whatQuestion(String question) {
 		return "What";
 	}
-	public String howQuestion(String question) {
+	private String howQuestion(String question) {
 		return "How";
 	}
-	public String whenQuestion(String question) {
+	private String whenQuestion(String question) {
 		return "When";
 	}
-	public String whoQuestion(String question) {
+	private String whoQuestion(String question) {
 		if(question.substring(question.length()-4).equals("you?"))
 			return "I'm everyone's favourite chatbot!";
 		return "Who";
 	}
 	
-	public String respond(String query) {
+	private String respond(String query) {
 		return "hi not a question";
 	}
 	
-	public String help() {
+	private String help() {
 		String help = "Type directly into the terminal anything you want to say to the me.\n"
 				+"Questions must start with \"Where\", \"What\", \"How\" or \"When\".\n"
-				+ "To exit the program, say \"Bye\" to the me."
+				+ "To exit the program, say \"Bye\" to me."
 				;
 		return help;
 	}
 	
-	public void delayResponse() {
+	private void delayResponse() {
 		String[] spinner = new String[] { "\u0008\u0008\u0008.  ", "\u0008\u0008\u0008.. ", "\u0008\u0008\u0008..." };
 		console.printf("Chatbot: ");
 		console.printf(".  ");
