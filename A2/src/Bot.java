@@ -5,7 +5,6 @@ public class Bot {
 	
 	public void receiveQuery(String query) {
 		String response;
-		query = query.toLowerCase();
 		if(query.equals("help"))
 			response = Response.help();
 		else if(Question.isQuestion(query))

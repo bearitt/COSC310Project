@@ -2,8 +2,10 @@
 public class Response {
 	static String respond(String query) {
 		String[] greetings = {"hello", "hi", "hey"};
+		//FIXME: For some reason, the splitter only works with spaces
+		String firstWord = query.split("[ ,';:.]+",0)[0];
 		for(String e:greetings) {
-			if(e.contentEquals(query))
+			if(e.contentEquals(firstWord))
 				return Greeting.hello();
 		}
 		return "hi not a question";
