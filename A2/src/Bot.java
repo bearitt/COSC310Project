@@ -5,7 +5,8 @@ public class Bot {
 	
 	public void receiveQuery(String query) {
 		String response;
-		if(query.toLowerCase().contentEquals("help"))
+		query = query.toLowerCase();
+		if(query.equals("help"))
 			response = help();
 		else if(isQuestion(query))
 			response = getQuestionType(query);
@@ -64,6 +65,8 @@ public class Bot {
 		return "When";
 	}
 	public String whoQuestion(String question) {
+		if(question.substring(question.length()-4).equals("you?"))
+			return "I'm everyone's favourite chatbot!";
 		return "Who";
 	}
 	

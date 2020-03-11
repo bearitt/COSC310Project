@@ -6,11 +6,12 @@ public class Conversation {
 		Bot chatbot = new Bot();
 		Console console = System.console();
 		String bye = "Bye";
+		String goodbye = "Goodbye";
 		console.printf("Enter your question (type \"Help\" for more information): ");
 		Scanner in = new Scanner(System.in);
 		String question = in.nextLine();
 		try {
-			while(!question.equalsIgnoreCase("Bye")) {
+			while(!question.equalsIgnoreCase(bye) || !question.equalsIgnoreCase(goodbye)) {
 				chatbot.receiveQuery(question);
 				console.printf("You: ");
 				question = in.nextLine();
