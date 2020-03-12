@@ -7,6 +7,13 @@ To compile and run the code, add the appropriate script to the src folder
 (follow directions in runme_scripts/readme.txt) and follow the directions
 to run the program in the terminal.
 
+** _Note:_ to run the runme scripts, your system must have the JDK installed
+ https://www.oracle.com/java/technologies/javase-downloads.html
+ and your path variables in your system must be set properly to point to
+ your Java install
+ https://www.java.com/en/download/help/path.xml
+ Without these steps, the scripts will throw an error.**
+
 ## Classes
 ### Conversation
 Contains main method. Prompts user for first input, then keeps the conversation
