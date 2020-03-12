@@ -1,5 +1,10 @@
 import java.util.*;
-
+/*
+ * Product class, stores information about the products in the store's database. getProducts
+ * returns a Hashmap with key value pair (product name, amount in stock). productsSold returns
+ * a HashMap with key value pair (product name, amount sold to date). Future implementation
+ * will connect the app to a database, either file based or server based depending on requirements.
+ */
 public class Product {
 	static HashMap<String,Integer> getProducts() {
 		HashMap<String,Integer> products = new HashMap<String,Integer>();
@@ -10,8 +15,7 @@ public class Product {
 		products.put("Oranges\t",98);
 		products.put("Tofu\t",32);
 		return products;
-	}
-	
+	}	
 	static HashMap<String, Integer> productsSold() {
 		//TODO: more elegant implementation for adding sold values
 		HashMap<String, Integer> soldProd = new HashMap<String, Integer>();
@@ -23,7 +27,7 @@ public class Product {
 		soldProd.put("Tofu\t", 43);
 		return soldProd; 
 	}
-	
+	//method iterates through sold products and extracts the top three sellers in descending order
 	static String[] topSold(HashMap<String, Integer> soldProd) {
 		String first = "", second = "", third = "";
 		int max, mid, min;
@@ -51,6 +55,8 @@ public class Product {
 	}
 	//TODO: change this so we can actually change the featured products instead of
 	//taking the first three. New method??
+	//current implementation returns first three products in the product list, could also
+	//hardcode in featured products
 	static String[] featuredProducts(HashMap<String, Integer> products) {
 		String[] featured = new String[3];
 		int j=0;

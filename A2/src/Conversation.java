@@ -1,7 +1,11 @@
 import java.io.Console;
 import java.util.*;
 public class Conversation {
-
+/*
+ * Class with main method, executes the conversation dialogue on an infinite loop
+ * until the user says bye or goodbye. Uses scanner to receive dialogue from the user
+ * through standard input and outputs messages to the console.
+ */
 	public static void main(String[] args) {
 		Bot chatbot = new Bot();
 		Console console = System.console();
@@ -14,7 +18,6 @@ public class Conversation {
 			question = in.nextLine().toLowerCase();
 		}
 		Greeting.goodbye();	
-		
 		in.close();
 	}
 

@@ -1,17 +1,21 @@
 import java.util.HashMap;
+/*
+ * Method for handling questions from the user. Determines whether the input is a question,
+ * and if so, what type of question it is. Called by Bot, calls Product class.
 
-//TODO: Fix jankiness of for loops. Maybe java map and filter?
-//https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
-
+TODO: Fix jankiness of for loops. Maybe java map and filter?
+https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html*/
 public class Question {
+	//HashMap storing products in the inventory
 	private static HashMap<String,Integer> products = Product.getProducts();
-	
+	//string to output if the question does not match any criteria in the methods
 	private static String notUnderstood = "I'm sorry, I don't understand the question.";
 	static boolean isQuestion(String query) {
 		if(query.substring(query.length()-1).contentEquals("?"))
 			return true;
 		return false;
 	}
+	//uses first word of question to determine type of question
 	static String getQuestionType(String question) {
 		String[] questionSplit = question.split(" ");
 		String response;
@@ -40,7 +44,15 @@ public class Question {
 		}
 		return response;
 	}
-	
+/*
+ * The following 7 methods return answers to the questions based on string matching.
+ * The question is split based on one of the values in the regex expression [ ,.?;:]+
+ * then a loop compares each word in the question to a list of keywords which return
+ * an appropriate response. If no match is found, the string notUnderstood is returned.
+ * In some cases, a certain keyword corresponds to multiple responses. In that case,
+ * boolean flags indicate the presence of one or more keywords, and the response is
+ * determined based on the presence of multiple flags.
+ */
 	private static String whereQuestion(String question) {
 		String[] questionSplit = question.split("[ ,.?;:]+");	
 		for(int i=0;i<questionSplit.length;++i) {
@@ -48,15 +60,12 @@ public class Question {
 					|| questionSplit[i].contentEquals("location") || questionSplit[i].contentEquals("you"))
 				return "We are located at 92 Baker Street.";
 		}
-		
 		return notUnderstood;
 	}
-	
 	private static String whatQuestion(String question) {
 		String[] questionSplit = question.split("[ ,.?;:]+");
 		boolean open, holiday;
-		open=holiday=false;
-		
+		open=holiday=false;		
 		for(int i=0;i<questionSplit.length;++i) {
 			if(questionSplit[i].contentEquals("phone"))
 				return "Our customer service number is 123-456-7890";
@@ -101,14 +110,12 @@ public class Question {
 		if(open&&holiday)
 			return "The only day the store is closed is during Christmas, otherwise we are open"
 					+ " every day with normal operating hours.";
-
 		return notUnderstood;
 	}
 	private static String howQuestion(String question) {
 		String[] questionSplit = question.split("[ ,.?;:]+");
 		if(questionSplit[1].contentEquals("are") && questionSplit[2].contentEquals("you"))
 			return "I'm good!";
-
 		for(int i=0;i<questionSplit.length;++i) {
 			if(questionSplit[i].contentEquals("service") || questionSplit[i].contentEquals("contact"))
 				return "Our customer service number is 123-456-7890";
@@ -146,15 +153,13 @@ public class Question {
 			return "The only day the store is closed is during Christmas, otherwise we are open"
 					+ " every day with normal operating hours.";		
 		return notUnderstood;
-	}
-	
+	}	
 	private static String whoQuestion(String question) {
 		String[] questionSplit = question.split("[ ,.?;:]+");
 		if(questionSplit[questionSplit.length-1].contentEquals("you"))//question.substring(question.length()-4).equals("you?"))
 			return "I'm everyone's favourite chatbot!";
 		return notUnderstood;
-	}
-	
+	}	
 	private static String whichQuestion(String question) {
 		String[] questionSplit = question.split("[ ,.?;:]+");
 		boolean pay, online;
@@ -170,7 +175,6 @@ public class Question {
 					answer+=j+"\n";
 				return answer;
 			}
-
 			if(questionSplit[i].contentEquals("payment"))
 				pay=true; 
 			if(questionSplit[i].contentEquals("online"))
@@ -182,7 +186,6 @@ public class Question {
 			return "For online orders, we accept Interac-Online, Visa, Mastercard, and American Express.";
 		return notUnderstood;
 	}
-
 	private static String otherQuestion(String question) {
 		String[] questionSplit = question.split("[ ,.?;:]+");
 		boolean membership = false;
@@ -213,8 +216,7 @@ public class Question {
 				pay = true;
 			if(questionSplit[i].contentEquals("checkout") ||
 					questionSplit[i].contentEquals("self-checkout"))
-				return "Yes, our store offers a self-checkout system.";
-			
+				return "Yes, our store offers a self-checkout system.";	
 			if(questionSplit[i].contentEquals("online") ||
 					questionSplit[i].contentEquals("delivery"))
 				delivery=true;
@@ -233,6 +235,7 @@ public class Question {
 					questionSplit[i].contentEquals("meat"))
 				fresh=true;
 		}
+		//membership queries
 		if(membership&&!renew&&!pay)
 			return "We are currently accepting new members for our preferred customers promotion! "
 			+ "Check the website for details or apply in store";
@@ -241,7 +244,7 @@ public class Question {
 		if(membership&&pay)
 			return "Our preferred members program is completely free! You can join the club"
 					+" or renew for free either online or in store";
-
+		//delivery queries
 		if(delivery&&!schedule&&!account&&!expedited&&!fresh)
 			return "We offer online delivery for members. If you need a rush order, ask me "
 					+ "about expedited delivery.";
