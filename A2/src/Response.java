@@ -6,8 +6,12 @@ public class Response {
 		for(String e:greetings) {
 			if(e.contentEquals(firstWord))
 				return Greeting.hello();
+			if(e.contentEquals("awesome") ||
+					e.contentEquals("best") || e.contentEquals("great") ||
+					e.contentEquals("super"))
+				return "Thanks, you're pretty great too!";
 		}
-		return "hi not a question";
+		return "I'm not sure what you mean. Type \"help\" if you need some guidance.";
 	}
 	
 	static String help() {

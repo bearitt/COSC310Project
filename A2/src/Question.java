@@ -4,7 +4,7 @@ import java.util.HashMap;
 //https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
 
 public class Question {
-	private static HashMap<String,Integer> products = Products.getProducts();
+	private static HashMap<String,Integer> products = Product.getProducts();
 	
 	private static String notUnderstood = "I'm sorry, I don't understand the question.";
 	static boolean isQuestion(String query) {
@@ -67,7 +67,7 @@ public class Question {
 				holiday=true;
 			if(questionSplit[i].contentEquals("top") 
 					|| questionSplit[i].contentEquals("most")) {
-				String[] topSold = Products.topSold(products);
+				String[] topSold = Product.topSold(products);
 				String availProd = "The top selling products are: \n";
 				int k = 1;
 				for(String j : topSold) {
@@ -164,7 +164,7 @@ public class Question {
 					questionSplit[i].contentEquals("promoted") ||
 					questionSplit[i].contentEquals("featured") ||
 					questionSplit[i].contentEquals("features")) {
-				String[] promotions = Products.featuredProducts(products);
+				String[] promotions = Product.featuredProducts(products);
 				String answer = "The following items are currently featured: \n";
 				for(String j:promotions)
 					answer+=j+"\n";
@@ -214,6 +214,7 @@ public class Question {
 			if(questionSplit[i].contentEquals("checkout") ||
 					questionSplit[i].contentEquals("self-checkout"))
 				return "Yes, our store offers a self-checkout system.";
+			
 			if(questionSplit[i].contentEquals("online") ||
 					questionSplit[i].contentEquals("delivery"))
 				delivery=true;

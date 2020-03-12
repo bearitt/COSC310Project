@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Products {
+public class Product {
 	static HashMap<String,Integer> getProducts() {
 		HashMap<String,Integer> products = new HashMap<String,Integer>();
 		//usage: product name, amount in stock

@@ -28,14 +28,24 @@ and provide a countdown before exiting the program.
 Contains methods pertaining to user questions. isQuestion returns a boolean, true
 if the last character in the user query is a question mark, false otherwise.
 getQuestionType takes the first word in the user's query and calls the appropriate
-method according to whether the question is a "where", "what", "how", "when",
-or "who" question. The method returns an error message if the question does not
-fall into those categories. whereQuestion, whatQuestion, howQuestion,
-whenQuestion and whoQuestion contain the responses to the user query and use
-switch statements to determine the appropriate response.
+method according to whether the question is a "where", "what", "how", "when", "which"
+or "who" question. The method defaults to otherQuestion if the question does not
+fall into one of those categories. whereQuestion, whatQuestion, howQuestion,
+whenQuestion, whichQuestion and whoQuestion contain the responses to the user query
+and use a series of if statements to determine the appropriate response.
 
 ### Response
 Contains methods for responding to user inputs that are not questions (as
-determined by Question.isQuestion). respond contains switch statements to
+determined by Question.isQuestion). respond contains if statements to
 determine the appropriate response to a user input. help types out a short
 manual for the user
+
+### Products
+Contains methods pertaining to the list of products in the store. getProducts
+returns a HashMap with key value pair (product name,current stock). productsSold
+returns a Hashmap with key value pair (product name, amount sold to date).
+topSold returns a string array with the first, second, and third top selling
+products to date. featuredProducts returns a string array with the three products
+currently featured by the store (in current implementation, this corresponds
+to the first three products in the list. Future implementations will allow
+choosing products to feature).
