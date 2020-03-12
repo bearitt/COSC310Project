@@ -6,7 +6,7 @@ import java.io.Console;
 public class Bot {
 	Console console = System.console();
 	//method for receiving input from the user through standard in
-	public void receiveQuery(String query) {
+	void receiveQuery(String query) {
 		String response;
 		if(query.equals("help"))
 			response = Response.help();

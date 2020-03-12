@@ -7,9 +7,9 @@ TODO: Fix jankiness of for loops. Maybe java map and filter?
 https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html*/
 public class Question {
 	//HashMap storing products in the inventory
-	private static HashMap<String,Integer> products = Product.getProducts();
+	private static final HashMap<String,Integer> products = Product.getProducts();
 	//string to output if the question does not match any criteria in the methods
-	private static String notUnderstood = "I'm sorry, I don't understand the question.";
+	private static final String notUnderstood = "I'm sorry, I don't understand the question.";
 	static boolean isQuestion(String query) {
 		if(query.substring(query.length()-1).contentEquals("?"))
 			return true;

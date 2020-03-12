@@ -5,7 +5,7 @@ import java.io.Console;
  */
 public class Greeting {
 	//outputs a string greeting the user
-	public static String hello() {
+	static String hello() {
 		return "Hi! Thanks for chatting with me, what can I help you with?";
 	}
 	//outputs a string saying goodbye to the user with a timer counting down to program
