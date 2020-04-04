@@ -1,4 +1,4 @@
-
+import java.util.*;
 
 import java.util.Properties;
 
@@ -10,8 +10,8 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
 
 public class SentimentAnalyzer {
-
-	public int getStanfordSentimentRate(String sentimentText) {
+	
+	static public int getStanfordSentimentRate(String sentimentText) {
 	    Properties props = new Properties();
 	    props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
 	    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
