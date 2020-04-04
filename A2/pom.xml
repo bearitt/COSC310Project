@@ -35,5 +35,27 @@
  		<version> 3.8.0</version>
  		<classifier> models-english </classifier>
 	</dependency>
+  <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-api</artifactId>
+       <version>1.7.12</version>
+   </dependency>
+	<dependency>
+	  <groupId>org.slf4j</groupId>
+	  <artifactId>slf4j-simple</artifactId>
+	  <version>1.7.21</version>
+	</dependency>
+	<dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+			<version>3.8.0</version>
+        </dependency>
+		
+		<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+        </dependency>
   </dependencies>
 </project>
