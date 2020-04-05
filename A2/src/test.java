@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -90,6 +91,10 @@ public class test {
 		System.out.println("Hi! Say something");
 		String response = sc.nextLine();
 		System.out.println(SentimentAnalyzer.getStanfordSentimentRate(response));
+		ArrayList<String> something = Lemma.lemmatize(response);
+		for(String i : something) {
+			System.out.println(i);
+		}
 	}
 
 }
