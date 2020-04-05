@@ -1,8 +1,15 @@
 import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.Set;
 
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
+import edu.stanford.nlp.util.CoreMap;
 
 public class test {
 
@@ -93,10 +100,26 @@ public class test {
 		//String response = sc.nextLine();
 		//System.out.println(NERConfidence.getNamedEntityRecognition(response));
 		
-		String a = "I like watching movies";
-		MaxentTagger tagger =  new MaxentTagger("lib/tagger/taggers/english-left3words-distsim.tagger");
-		String tagged = tagger.tagString(a);
-		System.out.println(tagged);
+//		String a = "I like watching movies";
+//		MaxentTagger tagger =  new MaxentTagger("lib/tagger/taggers/english-left3words-distsim.tagger");
+//		String tagged = tagger.tagString(a);
+//		System.out.println(tagged);
+		
+		Properties props = new Properties();
+		props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
+		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+		String text = "John is going to the mall tomorrow night and it is sunny outside";
+		Annotation document = new Annotation(text);
+		pipeline.annotate(document);
+		List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+		for(CoreMap sentence : sentences) {
+			for(CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+				String word = token.get(CoreAnnotations.TextAnnotation.class);
+				String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+				String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+				System.out.printf("Print: word: [%s] pos: [%s] ne: [%s]\n", word, pos, ne);
+			}
+		}
 	}
 
 }
