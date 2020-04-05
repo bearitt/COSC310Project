@@ -32,6 +32,7 @@ order
 cancel
 promotion
 promote
+promoted
 feature
 payment
 pay

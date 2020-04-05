@@ -90,11 +90,13 @@ public class test {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Hi! Say something");
 		String response = sc.nextLine();
-		System.out.println(SentimentAnalyzer.getStanfordSentimentRate(response));
+//		System.out.println(SentimentAnalyzer.getStanfordSentimentRate(response));
 		ArrayList<String> something = Lemma.lemmatize(response);
-		for(String i : something) {
-			System.out.println(i);
-		}
+//		for(String i : something) {
+//			System.out.println(i);
+//		}
+		System.out.println("Testing spellcheck on first word\n------------------------");
+		System.out.println(Spellcheck.wordSuggester(something.get(0)));
 	}
 
 }
