@@ -89,7 +89,7 @@ public class test {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Hi! Say something");
 		String response = sc.nextLine();
-		System.out.println(SentimentAnalyzer.getStanfordSentimentRate(response));
+		System.out.println(NERConfidence.getNamedEntityRecognition(response));
 	}
 
 }

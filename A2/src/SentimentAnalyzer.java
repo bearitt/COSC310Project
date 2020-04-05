@@ -1,5 +1,3 @@
-import java.util.*;
-
 import java.util.Properties;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -10,7 +8,7 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
 
 public class SentimentAnalyzer {
-	
+	//This method uses Stanford NLP to analyze the sentiment of a string
 	static public int getStanfordSentimentRate(String sentimentText) {
 	    Properties props = new Properties();
 	    props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");

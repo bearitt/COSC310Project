@@ -10,6 +10,8 @@ public class Bot {
 		String response;
 		if(query.equals("help"))
 			response = Response.help();
+		else if (NERConfidence.containsDate(query) || query.toLowerCase().contains("daily") || query.toLowerCase().contains("special"))
+			response = NERConfidence.getSpecial(query);
 		else if(Question.isQuestion(query))
 			response = Question.getQuestionType(query);
 		else

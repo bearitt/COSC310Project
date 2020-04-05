@@ -18,12 +18,21 @@ public class Response {
 					e.contentEquals("super"))
 				return "Thanks, you're pretty great too!";
 		}
+		//This calls the Sentiment Analyzer to determine if the statement 
+		//is positive or negative and responds appropriately
+		if (SentimentAnalyzer.getStanfordSentimentRate(query) < 0) {
+			return "That's not very nice!";
+		}else if (SentimentAnalyzer.getStanfordSentimentRate(query) > 0) {
+			return "That's awesome!";
+		}
 		return "I'm not sure what you mean. Type \"help\" if you need some guidance.";
-	}	
+	}
+	
 	static String help() {
 		String help = "\nType directly into the terminal anything you want to say to the me.\n"
 				+"Questions must start with \"Where\", \"What\", \"How\" or \"When\".\n"
 				+ "To exit the program, say \"Bye\" to me."
+				+ "Hint: Ask me about my daily specials!"
 				;
 		return help;
 	}	
