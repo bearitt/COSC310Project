@@ -7,6 +7,7 @@ public class Conversation {
  * through standard input and outputs messages to the console.
  */
 	public static void main(String[] args) {
+		//calling the SentimentAnalyzer on an empty string loads the Stanford library
 		SentimentAnalyzer.getStanfordSentimentRate("");
 		Bot chatbot = new Bot();
 		//Console console = System.console();
@@ -17,7 +18,7 @@ public class Conversation {
 			chatbot.receiveQuery(question);
 			System.out.printf("You: ");
 			question = in.nextLine().toLowerCase();
-			System.out.printf("Sentiment rating: %d\n", SentimentAnalyzer.getStanfordSentimentRate(question));
+//			System.out.printf("Sentiment rating: %d\n", SentimentAnalyzer.getStanfordSentimentRate(question));
 		}
 		//Greeting.goodbye();
 		System.out.println("Ok bye.");

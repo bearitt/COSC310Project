@@ -4,6 +4,9 @@ how
 when
 who
 which
+can
+will
+would
 store
 locate
 location
@@ -23,7 +26,7 @@ member
 membership
 return
 exchange
-are
+be
 service
 contact
 account
@@ -50,3 +53,13 @@ fresh
 vegetable
 produce
 meat
+tell
+goodbye
+bye
+help
+hi
+hey
+hello
+the
+over
+be

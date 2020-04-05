@@ -86,10 +86,13 @@ public class test {
 ////		for(String i:topThree)
 ////			System.out.println(i);
 //		System.out.println("Done");
-
+		System.out.println(Lemma.lemmatize("are"));
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Hi! Say something");
-		String response = sc.nextLine();
+		String response = sc.nextLine().toLowerCase();
+		String query = response;
+		query = query.substring(0,query.length()-1);
+		System.out.println("Stripped query:\n--------\n" + query);
 //		System.out.println(SentimentAnalyzer.getStanfordSentimentRate(response));
 		ArrayList<String> something = Bot.parse(response);
 //		for(String i : something) {

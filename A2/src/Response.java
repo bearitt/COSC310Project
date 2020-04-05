@@ -9,12 +9,10 @@ import java.util.ArrayList;
  * their orders.
  */
 public class Response {
-	static String respond(String query) {
-		if(query.contentEquals(""))
+	static String respond(ArrayList<String> sentence) {
+		if(sentence.size() == 0)
 			return "Please say something!";
-		ArrayList<String> sentence = Lemma.lemmatize(query);
 		String[] greetings = {"hello", "hi", "hey"};
-		String firstWord = query.split("[ ,';:.]+",0)[0];
 		for(String e:greetings) {
 			if(sentence.contains(e))
 				return Greeting.hello();

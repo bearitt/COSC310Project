@@ -10,12 +10,13 @@ public class Bot {
 	//method for receiving input from the user through standard in
 	void receiveQuery(String query) {
 		String response;
+		ArrayList<String> sentence = Bot.parse(query);
 		if(query.equals("help"))
 			response = Response.help();
 		else if(Question.isQuestion(query))
-			response = Question.getQuestionType(query);
+			response = Question.getQuestionType(sentence);
 		else
-			response = Response.respond(query);
+			response = Response.respond(sentence);
 		//delayResponse();
 		System.out.print("Chatbot: ");
 		System.out.printf(response + "\n");
@@ -39,6 +40,8 @@ public class Bot {
 	}
 	
 	static public ArrayList<String> parse(String query) {
+		if(!query.contentEquals("") && Question.isQuestion(query))
+			query = query.substring(0,query.length()-1);
 		ArrayList<String> splitQuery = Lemma.lemmatize(query);
 		ArrayList<String> output = new ArrayList<String>();
 		for(int i=0; i<splitQuery.size(); ++i) {
