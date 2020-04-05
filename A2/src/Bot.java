@@ -13,15 +13,17 @@ public class Bot {
 		ArrayList<String> sentence = Bot.parse(query);
 		if(query.equals("help"))
 			response = Response.help();
-		else if (NERConfidence.containsDate(query) || query.toLowerCase().contains("daily") || query.toLowerCase().contains("special"))
-			response = NERConfidence.getSpecial(query);
+		else if (NERConfidence.containsDate(query) || sentence.contains("daily") 
+				|| sentence.contains("special") || sentence.contains("bargain")
+				|| sentence.contains("deal"))
+			response = NERConfidence.getSpecial(sentence);
 		else if(Question.isQuestion(query))
 			response = Question.getQuestionType(sentence);
 		else
 			response = Response.respond(sentence, query);
 		//delayResponse();
 		System.out.print("Chatbot: ");
-		System.out.printf(response + "\n");
+		System.out.print(response + "\n");
 	}
 	
 	//usage: to create the revolving ellipsis simulating the chatbot "typing" input to the user 

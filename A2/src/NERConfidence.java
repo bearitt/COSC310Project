@@ -33,25 +33,20 @@ public class NERConfidence {
     	return getNamedEntityRecognition(checkForPerson).contains("PERSON");
     }
     //Uses NER to return the special for every day of the week
-    public static String getSpecial(String findDate) {
-    	if (!findDate.toLowerCase().contains("special") && 
-    			!findDate.toLowerCase().contains("sale") &&
-    			!findDate.toLowerCase().contains("bargain") &&
-    			!findDate.toLowerCase().contains("deal"))
-    		return "We have a different special every day of the week. ";
-    	if (findDate.toLowerCase().contains("monday"))
+    public static String getSpecial(ArrayList<String> findDate) {
+    	if (findDate.contains("monday"))
     		return "On Monday we have 30% off tofu.";
-    	if (findDate.toLowerCase().contains("tuesday"))
+    	if (findDate.contains("tuesday"))
 			return "On Tuesday we have buy two get one free for soup cans.";
-    	if (findDate.toLowerCase().contains("wednesday"))
+    	if (findDate.contains("wednesday"))
 			return "On Wednesday we have store wide 5% off.";
-    	if (findDate.toLowerCase().contains("thursday"))
+    	if (findDate.contains("thursday"))
 			return "On Thursday we have no specials.";
-    	if (findDate.toLowerCase().contains("friday"))
+    	if (findDate.contains("friday"))
 			return "On Friday we have 10% off steak.";
-    	if (findDate.toLowerCase().contains("saturday"))
+    	if (findDate.contains("saturday"))
 			return "On Saturday apples are 1$ each.";
-    	if (findDate.toLowerCase().contains("sunday"))
+    	if (findDate.contains("sunday"))
 			return "On Sunday, oranges are 50% off.";
     	else 
     		return "We have a different special every day of the week.";				

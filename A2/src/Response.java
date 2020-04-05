@@ -16,11 +16,6 @@ public class Response {
 		for(String e:greetings) {
 			if(sentence.contains(e))
 				return Greeting.hello();
-			//following lines deprecated with Jake SA implementation
-//			if(e.contentEquals("awesome") ||
-//					e.contentEquals("best") || e.contentEquals("great") ||
-//					e.contentEquals("super"))
-//				return "Thanks, you're pretty great too!";
 		}
 
 		//This calls the Sentiment Analyzer to determine if the statement 

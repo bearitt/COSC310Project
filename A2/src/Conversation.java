@@ -18,7 +18,6 @@ public class Conversation {
 			chatbot.receiveQuery(question);
 			System.out.printf("You: ");
 			question = in.nextLine().toLowerCase();
-//			System.out.printf("Sentiment rating: %d\n", SentimentAnalyzer.getStanfordSentimentRate(question));
 		}
 		//Greeting.goodbye();
 		System.out.println("Ok bye.");

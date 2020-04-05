@@ -63,3 +63,15 @@ hello
 the
 over
 be
+monday
+tuesday
+wednesday
+thursday
+friday
+saturday
+sunday
+tomorrow
+today
+week
+next
+this
