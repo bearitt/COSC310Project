@@ -91,12 +91,22 @@ public class test {
 		System.out.println("Hi! Say something");
 		String response = sc.nextLine();
 //		System.out.println(SentimentAnalyzer.getStanfordSentimentRate(response));
-		ArrayList<String> something = Lemma.lemmatize(response);
+		ArrayList<String> something = Bot.parse(response);
 //		for(String i : something) {
 //			System.out.println(i);
 //		}
-		System.out.println("Testing spellcheck on first word\n------------------------");
-		System.out.println(Spellcheck.wordSuggester(something.get(0)));
+//		System.out.println("Testing spellcheck on first word\n------------------------");
+//		System.out.println(Spellcheck.wordSuggester(something.get(0)));
+		System.out.println("Correcting spelling on entire sentence\n---------------------------");
+		for(String i : something)
+			System.out.print(i + " ");
+//		ArrayList<String> output = new ArrayList<String>();
+//		for(int i = 0;i<something.size();++i) {
+//			String temp = Spellcheck.wordSuggester(something.get(i));
+//			output.add(temp);
+//			System.out.print(temp + " ");
+//		}
+		sc.close();
 	}
 
 }

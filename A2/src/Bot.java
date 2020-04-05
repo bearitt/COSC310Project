@@ -38,9 +38,13 @@ public class Bot {
 		}
 	}
 	
-	public ArrayList<String> parse(String query) {
-		ArrayList<String> result = Lemma.lemmatize(query);
-		
-		return result;
+	static public ArrayList<String> parse(String query) {
+		ArrayList<String> splitQuery = Lemma.lemmatize(query);
+		ArrayList<String> output = new ArrayList<String>();
+		for(int i=0; i<splitQuery.size(); ++i) {
+			String temp = Spellcheck.wordSuggester(splitQuery.get(i));
+			output.add(temp);
+		}
+		return output;
 	}
 }

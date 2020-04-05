@@ -7,7 +7,7 @@ public class Spellcheck {
 	//dictionary file containing important words to the chatbot
     static String dictfile = "wordlist.txt";
     static ArrayList <String>wordlist = new ArrayList<String>();
-    static HashMap <String, Integer>newlist = new HashMap<String, Integer>();
+    
     //load the dictionary
     public static void loadDictionary(String filename) throws IOException{
         String line;
@@ -24,6 +24,7 @@ public class Spellcheck {
          * Prints a list of cities that can replace the city name in a 
          * sorted list, along with their edit distances (difference in name)
          */
+		HashMap <String, Integer>newlist = new HashMap<String, Integer>();
         int i;
         try {
             loadDictionary(dictfile);
