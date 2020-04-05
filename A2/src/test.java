@@ -2,6 +2,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
+import edu.stanford.nlp.tagger.maxent.MaxentTagger;
+
 public class test {
 
 	public static void main(String[] args) {
@@ -86,10 +88,15 @@ public class test {
 ////			System.out.println(i);
 //		System.out.println("Done");
 		
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Hi! Say something");
-		String response = sc.nextLine();
-		System.out.println(NERConfidence.getNamedEntityRecognition(response));
+		//Scanner sc = new Scanner(System.in);
+		//System.out.println("Hi! Say something");
+		//String response = sc.nextLine();
+		//System.out.println(NERConfidence.getNamedEntityRecognition(response));
+		
+		String a = "I like watching movies";
+		MaxentTagger tagger =  new MaxentTagger("lib/tagger/taggers/english-left3words-distsim.tagger");
+		String tagged = tagger.tagString(a);
+		System.out.println(tagged);
 	}
 
 }

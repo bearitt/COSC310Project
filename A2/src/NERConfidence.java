@@ -38,7 +38,7 @@ public class NERConfidence {
     			!findDate.toLowerCase().contains("sale") &&
     			!findDate.toLowerCase().contains("bargain") &&
     			!findDate.toLowerCase().contains("deal"))
-    		return "We have a different deal every day of the week. ";
+    		return "We have a different special every day of the week. ";
     	if (findDate.toLowerCase().contains("monday"))
     		return "On Monday we have 30% off tofu.";
     	if (findDate.toLowerCase().contains("tuesday"))
