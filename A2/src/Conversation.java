@@ -16,7 +16,8 @@ public class Conversation {
 			chatbot.receiveQuery(question);
 			console.printf("You: ");
 			question = in.nextLine().toLowerCase();
-			console.printf("Sentiment rating: %d\n", SentimentAnalyzer.getStanfordSentimentRate(question));
+			//Non-functional NLP code: raises exceptions when running in terminal
+//			console.printf("Sentiment rating: %d\n", SentimentAnalyzer.getStanfordSentimentRate(question));
 		}
 		Greeting.goodbye();	
 		in.close();
