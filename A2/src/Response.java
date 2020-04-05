@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
  * This class returns responses to queries which are not questions. So far in the
  * implementation, only two methods make up this class: response, which responds
@@ -7,24 +9,29 @@
  * their orders.
  */
 public class Response {
-	static String respond(String query) {
+	static String respond(ArrayList<String> sentence, String query) {
+		if(sentence.size() == 0)
+			return "Please say something!";
 		String[] greetings = {"hello", "hi", "hey"};
-		String firstWord = query.split("[ ,';:.]+",0)[0];
 		for(String e:greetings) {
-			if(e.contentEquals(firstWord))
+			if(sentence.contains(e))
 				return Greeting.hello();
-			if(e.contentEquals("awesome") ||
-					e.contentEquals("best") || e.contentEquals("great") ||
-					e.contentEquals("super"))
-				return "Thanks, you're pretty great too!";
+			//following lines deprecated with Jake SA implementation
+//			if(e.contentEquals("awesome") ||
+//					e.contentEquals("best") || e.contentEquals("great") ||
+//					e.contentEquals("super"))
+//				return "Thanks, you're pretty great too!";
 		}
+
 		//This calls the Sentiment Analyzer to determine if the statement 
 		//is positive or negative and responds appropriately
+		
 		if (SentimentAnalyzer.getStanfordSentimentRate(query) < 0) {
 			return "That's not very nice!";
 		}else if (SentimentAnalyzer.getStanfordSentimentRate(query) > 0) {
 			return "That's awesome!";
 		}
+
 		return "I'm not sure what you mean. Type \"help\" if you need some guidance.";
 	}
 	

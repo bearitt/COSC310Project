@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 /*
  * Method for handling questions from the user. Determines whether the input is a question,
@@ -11,35 +12,36 @@ public class Question {
 	//string to output if the question does not match any criteria in the methods
 	private static final String notUnderstood = "I'm sorry, I don't understand the question.";
 	static boolean isQuestion(String query) {
-		if(query.substring(query.length()-1).contentEquals("?"))
+		if(query.length() > 0 && query.substring(query.length()-1).contentEquals("?"))
 			return true;
 		return false;
 	}
 	//uses first word of question to determine type of question
-	static String getQuestionType(String question) {
-		String[] questionSplit = question.split(" ");
+	static String getQuestionType(ArrayList<String> sentence) {
+//		String[] questionSplit = question.split(" ");
+		
 		String response;
-		switch(questionSplit[0].toLowerCase()) {
+		switch(sentence.get(0)) {
 		case "where":
-			response=whereQuestion(question);
+			response=whereQuestion(sentence);
 			break;
 		case "what":
-			response=whatQuestion(question);
+			response=whatQuestion(sentence);
 			break;
 		case "how":
-			response=howQuestion(question);
+			response=howQuestion(sentence);
 			break;
 		case "when":
-			response=whenQuestion(question);
+			response=whenQuestion(sentence);
 			break;
 		case "who":
-			response=whoQuestion(question);
+			response=whoQuestion(sentence);
 			break;
 		case "which":
-			response=whichQuestion(question);
+			response=whichQuestion(sentence);
 			break;
 		default:
-			response=otherQuestion(question);
+			response=otherQuestion(sentence);
 			break;
 		}
 		return response;
@@ -53,100 +55,90 @@ public class Question {
  * boolean flags indicate the presence of one or more keywords, and the response is
  * determined based on the presence of multiple flags.
  */
-	private static String whereQuestion(String question) {
-		String[] questionSplit = question.split("[ ,.?;:]+");	
-		for(int i=0;i<questionSplit.length;++i) {
-			if(questionSplit[i].contentEquals("store") || questionSplit[i].contentEquals("located")
-					|| questionSplit[i].contentEquals("location") || questionSplit[i].contentEquals("you"))
-				return "We are located at 92 Baker Street.";
-		}
+	private static String whereQuestion(ArrayList<String> sentence) {
+		if(sentence.contains("store") || sentence.contains("locate") || sentence.contains("you") 
+				|| sentence.contains("location"))
+			return "We are located at 92 Baker Street.";
+		
 		return notUnderstood;
 	}
-	private static String whatQuestion(String question) {
-		String[] questionSplit = question.split("[ ,.?;:]+");
+	private static String whatQuestion(ArrayList<String> sentence) {
 		boolean open, holiday;
 		open=holiday=false;		
-		for(int i=0;i<questionSplit.length;++i) {
-			if(questionSplit[i].contentEquals("phone"))
-				return "Our customer service number is 123-456-7890";
-			if(questionSplit[i].contentEquals("time") || questionSplit[i].contentEquals("open"))
-				open=true;	
-			if(questionSplit[i].contentEquals("holiday") || questionSplit[i].contentEquals("Christmas")
-					|| questionSplit[i].contentEquals("holidays"))
-				holiday=true;
-			if(questionSplit[i].contentEquals("top") 
-					|| questionSplit[i].contentEquals("most")) {
-				String[] topSold = Product.topSold(products);
-				String availProd = "The top selling products are: \n";
-				int k = 1;
-				for(String j : topSold) {
-					availProd+= k++ + ")" + j + "\n";
-				}
-				return availProd;
-			}	
-			if(questionSplit[i].contentEquals("products") 
-					|| questionSplit[i].contentEquals("sale") || questionSplit[i].contentEquals("sell")
-					|| questionSplit[i].contentEquals("buy")) {
-				String availProd = "We have the following for sale: \n";
-				for(String j : products.keySet()) {
-					availProd+=j + "\t\tIn stock: " + products.get(j) + "\n";
-				}
-				return availProd;
-			}	
-			if(questionSplit[i].contentEquals("member") || 
-					questionSplit[i].contentEquals("membership") ||
-					questionSplit[i].contentEquals("members")) {
-				return "Members receive preferred pricing on certain items, advance notice for"
-						+ " sales and weekly coupons.";
-			}	
-			if(questionSplit[i].contentEquals("return") || 
-					questionSplit[i].contentEquals("exchange")) {
-				return "We will accept returns and exchanges for up to 7 days for a full refund, or "
-						+"for store credit up to 14 days after purchase.";
-			}	
-		}
+	
+		if(sentence.contains("phone"))
+			return "Our customer service number is 123-456-7890";
+		if(sentence.contains("time") || sentence.contains("open"))
+			open=true;	
+		if(sentence.contains("holiday") || sentence.contains("christmas"))
+			holiday=true;
+	
+		if(sentence.contains("member") || sentence.contains("membership"))
+			return "Members receive preferred pricing on certain items, advance notice for"
+					+ " sales and weekly coupons.";	
+		if(sentence.contains("return") || 
+				sentence.contains("exchange")) {
+			return "We will accept returns and exchanges for up to 7 days for a full refund, or "
+					+"for store credit up to 14 days after purchase.";
+		}	
+		
 		if(open&&!holiday)
 			return "We are open from 8am to 10pm, Monday to Sunday.";
 		if(open&&holiday)
 			return "The only day the store is closed is during Christmas, otherwise we are open"
 					+ " every day with normal operating hours.";
-		return notUnderstood;
-	}
-	private static String howQuestion(String question) {
-		String[] questionSplit = question.split("[ ,.?;:]+");
-		if(questionSplit[1].contentEquals("are") && questionSplit[2].contentEquals("you"))
-			return "I'm good!";
-		for(int i=0;i<questionSplit.length;++i) {
-			if(questionSplit[i].contentEquals("service") || questionSplit[i].contentEquals("contact"))
-				return "Our customer service number is 123-456-7890";
-			if(questionSplit[i].contentEquals("membership") ||
-					questionSplit[i].contentEquals("account"))
-				return "Membership enquiries can be handled in store. For further details, feel"
-						+ " free to check out our website in the \"Membership\" section.";
-			if(questionSplit[i].contentEquals("track") ||
-					questionSplit[i].contentEquals("order"))
-				return "You can track your delivery on the website in the Orders section.";
-			if(questionSplit[i].contentEquals("cancel"))
-				return "To cancel an order, please call our customer service line at 123-456-7890.";
+		if(sentence.contains("top") 
+				|| sentence.contains("most")) {
+			String[] topSold = Product.topSold(products);
+			String availProd = "The top selling products are: \n";
+			int k = 1;
+			for(String j : topSold) {
+				availProd+= k++ + ")" + j + "\n";
+			}
+			return availProd;
+		}	
+		if(sentence.contains("product") 
+				|| sentence.contains("sale") || sentence.contains("sell")
+				|| sentence.contains("buy")) {
+			String availProd = "We have the following for sale: \n";
+			for(String j : products.keySet()) {
+				availProd+=j + "\t\tIn stock: " + products.get(j) + "\n";
+			}
+			return availProd;
 		}
 		return notUnderstood;
 	}
-	private static String whenQuestion(String question) {
-		String[] questionSplit = question.split("[ ,.?;:]+");
+	private static String howQuestion(ArrayList<String> sentence) {
+		if(sentence.get(2).contentEquals("you"))
+			return "I'm good!";
+		if(sentence.contains("service") || sentence.contains("contact"))
+			return "Our customer service number is 123-456-7890";
+		if(sentence.contains("membership") ||
+				sentence.contains("account"))
+			return "Membership enquiries can be handled in store. For further details, feel"
+					+ " free to check out our website in the \"Membership\" section.";
+		if(sentence.contains("cancel"))
+			return "To cancel an order, please call our customer service line at 123-456-7890.";
+		if(sentence.contains("track") ||
+				sentence.contains("order"))
+			return "You can track your delivery on the website in the Orders section.";
+		
+		
+		return notUnderstood;
+	}
+	private static String whenQuestion(ArrayList<String> sentence) {
 		boolean open, holiday;
 		open=holiday=false;
-		for(int i=0;i<questionSplit.length;++i) {
-			if(questionSplit[i].contentEquals("time") || questionSplit[i].contentEquals("open"))
-				open=true;
-			if(questionSplit[i].contentEquals("holiday") || questionSplit[i].contentEquals("Christmas"))
-				holiday=true;
-			if(questionSplit[i].contentEquals("promotion") ||
-					questionSplit[i].contentEquals("promoted") ||
-					questionSplit[i].contentEquals("featured") ||
-					questionSplit[i].contentEquals("features"))
-				return "Promotions usually run for one week, ending Sunday night."
-						+ "Check the website for further details.";
-		}		
+		
+		if(sentence.contains("time") || sentence.contains("open"))
+			open=true;
+		if(sentence.contains("holiday") || sentence.contains("christmas"))
+			holiday=true;
+		if(sentence.contains("promotion") || sentence.contains("promote") ||
+				sentence.contains("feature"))
+			return "Promotions usually run for one week, ending Sunday night."
+					+ "Check the website for further details.";
+				
 		if(open&&!holiday)
 			return "We are open from 8am to 10pm, Monday to Sunday.";
 		if(open&&holiday)
@@ -154,87 +146,74 @@ public class Question {
 					+ " every day with normal operating hours.";		
 		return notUnderstood;
 	}	
-	private static String whoQuestion(String question) {
-		String[] questionSplit = question.split("[ ,.?;:]+");
-		if(questionSplit[questionSplit.length-1].contentEquals("you"))//question.substring(question.length()-4).equals("you?"))
+	private static String whoQuestion(ArrayList<String> sentence) {
+		
+		if(sentence.contains("you"))//question.substring(question.length()-4).equals("you?"))
 			return "I'm everyone's favourite chatbot!";
 		return notUnderstood;
 	}	
-	private static String whichQuestion(String question) {
-		String[] questionSplit = question.split("[ ,.?;:]+");
+	private static String whichQuestion(ArrayList<String> sentence) {
 		boolean pay, online;
 		pay=online=false;
-		for(int i=0;i<questionSplit.length;++i) {
-			if(questionSplit[i].contentEquals("promotion") ||
-					questionSplit[i].contentEquals("promoted") ||
-					questionSplit[i].contentEquals("featured") ||
-					questionSplit[i].contentEquals("features")) {
-				String[] promotions = Product.featuredProducts(products);
-				String answer = "The following items are currently featured: \n";
-				for(String j:promotions)
-					answer+=j+"\n";
-				return answer;
-			}
-			if(questionSplit[i].contentEquals("payment"))
-				pay=true; 
-			if(questionSplit[i].contentEquals("online"))
-				online=true;
+		
+		if(sentence.contains("promotion") || sentence.contains("promote") ||
+				sentence.contains("feature")) {
+			String[] promotions = Product.featuredProducts(products);
+			String answer = "The following items are currently featured: \n";
+			for(String j:promotions)
+				answer+=j+"\n";
+			return answer;
 		}
+		if(sentence.contains("payment"))
+			pay=true; 
+		if(sentence.contains("online"))
+			online=true;
+		
 		if(pay&&!online)
 			return "In store, we will accept Mastercard, Visa, American Express, debit and cash.";
 		if(pay&&online)
 			return "For online orders, we accept Interac-Online, Visa, Mastercard, and American Express.";
 		return notUnderstood;
 	}
-	private static String otherQuestion(String question) {
-		String[] questionSplit = question.split("[ ,.?;:]+");
+	private static String otherQuestion(ArrayList<String> sentence) {
 		boolean membership = false;
 		boolean renew = false;
 		boolean pay = false;
 		boolean delivery,schedule,account,expedited,fresh;
 		delivery=schedule=account=expedited=fresh=false;
-		for(int i=0;i<questionSplit.length;++i) {
-			if(questionSplit[i].contentEquals("open"))
-				return "We are open from 8am to 10pm, Monday to Sunday.";
-			if(questionSplit[i].contentEquals("products") 
-					|| questionSplit[i].contentEquals("sale") || questionSplit[i].contentEquals("sell")
-					|| questionSplit[i].contentEquals("buy")) {
-				String availProd = "We have the following for sale: \n";
-				for(String j : products.keySet()) {
-					availProd+=j + " In stock: " + products.get(j) + "\n";
-				}
-				return availProd;
-			}
-			if(questionSplit[i].contentEquals("membership"))
-				membership = true;
-			if(questionSplit[i].contentEquals("expired") ||
-					questionSplit[i].contentEquals("renew") ||
-					questionSplit[i].contentEquals("reclaim"))
-				renew = true;
-			if(questionSplit[i].contentEquals("pay") ||
-					questionSplit[i].contentEquals("cost"))
-				pay = true;
-			if(questionSplit[i].contentEquals("checkout") ||
-					questionSplit[i].contentEquals("self-checkout"))
-				return "Yes, our store offers a self-checkout system.";	
-			if(questionSplit[i].contentEquals("online") ||
-					questionSplit[i].contentEquals("delivery"))
-				delivery=true;
-			if(questionSplit[i].contentEquals("time") ||
-					questionSplit[i].contentEquals("schedule"))
-				schedule=true;
-			if(questionSplit[i].contentEquals("account") ||
-					questionSplit[i].contentEquals("sign") ||
-					questionSplit[i].contentEquals("signup"))
-				account=true;
-			if(questionSplit[i].contentEquals("expedited"))
-				expedited=true;
-			if(questionSplit[i].contentEquals("fresh") ||
-					questionSplit[i].contentEquals("vegetables") ||
-					questionSplit[i].contentEquals("produce") ||
-					questionSplit[i].contentEquals("meat"))
-				fresh=true;
-		}
+		if(sentence.contains("open"))
+			return "We are open from 8am to 10pm, Monday to Sunday.";
+		
+		if(sentence.contains("membership"))
+			membership = true;
+		if(sentence.contains("expire") ||
+				sentence.contains("renew") ||
+				sentence.contains("reclaim"))
+			renew = true;
+		if(sentence.contains("pay") ||
+				sentence.contains("cost"))
+			pay = true;
+		if(sentence.contains("checkout") ||
+				sentence.contains("self-checkout"))
+			return "Yes, our store offers a self-checkout system.";	
+		if(sentence.contains("online") ||
+				sentence.contains("deliver"))
+			delivery=true;
+		if(sentence.contains("time") ||
+				sentence.contains("schedule"))
+			schedule=true;
+		if(sentence.contains("account") ||
+				sentence.contains("sign") ||
+				sentence.contains("signup"))
+			account=true;
+		if(sentence.contains("expedite"))
+			expedited=true;
+		if(sentence.contains("fresh") ||
+				sentence.contains("vegetable") ||
+				sentence.contains("produce") ||
+				sentence.contains("meat"))
+			fresh=true;
+		
 		//membership queries
 		if(membership&&!renew&&!pay)
 			return "We are currently accepting new members for our preferred customers promotion! "
@@ -261,6 +240,15 @@ public class Question {
 			return "Our team members choose the finest meats and produce for every delivery order, "
 					+ "guaranteed fresh. If you are unsatisfied with an item, we will offer a full"
 					+ " refund.";
+		if(sentence.contains("product") 
+				|| sentence.contains("sale") || sentence.contains("sell")
+				|| sentence.contains("buy")) {
+			String availProd = "We have the following for sale: \n";
+			for(String j : products.keySet()) {
+				availProd+=j + " In stock: " + products.get(j) + "\n";
+			}
+			return availProd;
+		}
 		return notUnderstood;
 	}
 }

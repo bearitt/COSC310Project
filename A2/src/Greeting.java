@@ -1,4 +1,4 @@
-import java.io.Console;
+//import java.io.Console;
 
 /*
  * Greeting class, handles hellos and goodbyes
@@ -11,7 +11,7 @@ public class Greeting {
 	//outputs a string saying goodbye to the user with a timer counting down to program
 	//completion, similar implementation to Bot.delayResponse
 	static void goodbye() {
-		Console console = System.console();
+		//Console console = System.console();
 		String[] spinner = new String[] { 
 				"\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u00084 seconds",
 				"\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u00083 seconds",
@@ -19,15 +19,15 @@ public class Greeting {
 				"\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u00081 second \n"
 				};
 		try {
-			console.printf("Chatbot: Thanks for chatting with me, goodbye!\n"
+			System.out.printf("Chatbot: Thanks for chatting with me, goodbye!\n"
 					+ "Exiting program in 5 seconds");
 			Thread.sleep(1000);
 			for (int i = 0; i < 4; i++) {
-				console.printf("%s", spinner[i]);
+				System.out.printf("%s", spinner[i]);
 				Thread.sleep(1000);
 			}
 		} catch(InterruptedException e) {
-			console.printf("Sorry, something went wrong on our end! Closing program...");
+			System.out.printf("Sorry, something went wrong on our end! Closing program...");
 		}
 	}
 }

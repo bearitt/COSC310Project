@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -120,6 +121,32 @@ public class test {
 				System.out.printf("Print: word: [%s] pos: [%s] ne: [%s]\n", word, pos, ne);
 			}
 		}
+
+		System.out.println(Lemma.lemmatize("are"));
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Hi! Say something");
+		String response = sc.nextLine().toLowerCase();
+		String query = response;
+		query = query.substring(0,query.length()-1);
+		System.out.println("Stripped query:\n--------\n" + query);
+//		System.out.println(SentimentAnalyzer.getStanfordSentimentRate(response));
+		ArrayList<String> something = Bot.parse(response);
+//		for(String i : something) {
+//			System.out.println(i);
+//		}
+//		System.out.println("Testing spellcheck on first word\n------------------------");
+//		System.out.println(Spellcheck.wordSuggester(something.get(0)));
+		System.out.println("Correcting spelling on entire sentence\n---------------------------");
+		for(String i : something)
+			System.out.print(i + " ");
+//		ArrayList<String> output = new ArrayList<String>();
+//		for(int i = 0;i<something.size();++i) {
+//			String temp = Spellcheck.wordSuggester(something.get(i));
+//			output.add(temp);
+//			System.out.print(temp + " ");
+//		}
+		sc.close();
+
 	}
 
 }

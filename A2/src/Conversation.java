@@ -1,4 +1,4 @@
-import java.io.Console;
+//import java.io.Console;
 import java.util.*;
 public class Conversation {
 /*
@@ -7,19 +7,21 @@ public class Conversation {
  * through standard input and outputs messages to the console.
  */
 	public static void main(String[] args) {
+		//calling the SentimentAnalyzer on an empty string loads the Stanford library
+		SentimentAnalyzer.getStanfordSentimentRate("");
 		Bot chatbot = new Bot();
-		Console console = System.console();
-		console.printf("Enter your question (type \"Help\" for more information): ");
+		//Console console = System.console();
+		System.out.printf("Enter your question (type \"Help\" for more information): ");
 		Scanner in = new Scanner(System.in);
 		String question = in.nextLine().toLowerCase();
 		while(!question.contentEquals("bye") && !question.contentEquals("goodbye")) {
 			chatbot.receiveQuery(question);
-			console.printf("You: ");
+			System.out.printf("You: ");
 			question = in.nextLine().toLowerCase();
-			//Non-functional NLP code: raises exceptions when running in terminal
-//			console.printf("Sentiment rating: %d\n", SentimentAnalyzer.getStanfordSentimentRate(question));
+//			System.out.printf("Sentiment rating: %d\n", SentimentAnalyzer.getStanfordSentimentRate(question));
 		}
-		Greeting.goodbye();	
+		//Greeting.goodbye();
+		System.out.println("Ok bye.");
 		in.close();
 	}
 
