@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 /*
  * Method for handling questions from the user. Determines whether the input is a question,
@@ -11,15 +12,16 @@ public class Question {
 	//string to output if the question does not match any criteria in the methods
 	private static final String notUnderstood = "I'm sorry, I don't understand the question.";
 	static boolean isQuestion(String query) {
-		if(query.substring(query.length()-1).contentEquals("?"))
+		if(query.length() > 0 && query.substring(query.length()-1).contentEquals("?"))
 			return true;
 		return false;
 	}
 	//uses first word of question to determine type of question
 	static String getQuestionType(String question) {
-		String[] questionSplit = question.split(" ");
+//		String[] questionSplit = question.split(" ");
+		ArrayList<String> sentence = Lemma.lemmatize(question);
 		String response;
-		switch(questionSplit[0].toLowerCase()) {
+		switch(sentence.get(0)) {
 		case "where":
 			response=whereQuestion(question);
 			break;
@@ -54,12 +56,13 @@ public class Question {
  * determined based on the presence of multiple flags.
  */
 	private static String whereQuestion(String question) {
-		String[] questionSplit = question.split("[ ,.?;:]+");	
-		for(int i=0;i<questionSplit.length;++i) {
-			if(questionSplit[i].contentEquals("store") || questionSplit[i].contentEquals("located")
-					|| questionSplit[i].contentEquals("location") || questionSplit[i].contentEquals("you"))
-				return "We are located at 92 Baker Street.";
-		}
+//		String[] questionSplit = question.split("[ ,.?;:]+");
+		ArrayList<String> sentence = Lemma.lemmatize(question);
+		
+		if(sentence.contains("store") || sentence.contains("locate") || sentence.contains("you") 
+				|| sentence.contains("location"))
+			return "We are located at 92 Baker Street.";
+		
 		return notUnderstood;
 	}
 	private static String whatQuestion(String question) {
@@ -71,7 +74,7 @@ public class Question {
 				return "Our customer service number is 123-456-7890";
 			if(questionSplit[i].contentEquals("time") || questionSplit[i].contentEquals("open"))
 				open=true;	
-			if(questionSplit[i].contentEquals("holiday") || questionSplit[i].contentEquals("Christmas")
+			if(questionSplit[i].contentEquals("holiday") || questionSplit[i].contentEquals("christmas")
 					|| questionSplit[i].contentEquals("holidays"))
 				holiday=true;
 			if(questionSplit[i].contentEquals("top") 
@@ -138,7 +141,7 @@ public class Question {
 		for(int i=0;i<questionSplit.length;++i) {
 			if(questionSplit[i].contentEquals("time") || questionSplit[i].contentEquals("open"))
 				open=true;
-			if(questionSplit[i].contentEquals("holiday") || questionSplit[i].contentEquals("Christmas"))
+			if(questionSplit[i].contentEquals("holiday") || questionSplit[i].contentEquals("christmas"))
 				holiday=true;
 			if(questionSplit[i].contentEquals("promotion") ||
 					questionSplit[i].contentEquals("promoted") ||

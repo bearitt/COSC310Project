@@ -86,7 +86,7 @@ public class test {
 ////		for(String i:topThree)
 ////			System.out.println(i);
 //		System.out.println("Done");
-		
+
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Hi! Say something");
 		String response = sc.nextLine();

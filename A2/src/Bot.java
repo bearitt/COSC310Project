@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 //import java.io.Console;
 /*
  * Main chatbot class. Zero argument constructor creates a new chatbot, calls methods from
@@ -34,5 +36,11 @@ public class Bot {
 		} catch (InterruptedException e) {
 			System.out.printf("Something went wrong\n");
 		}
+	}
+	
+	public ArrayList<String> parse(String query) {
+		ArrayList<String> result = Lemma.lemmatize(query);
+		
+		return result;
 	}
 }
