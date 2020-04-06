@@ -114,6 +114,11 @@ an integer value representing the rating with the following key:
 Contains mostly garbage code not necessary for implementation. A playground for us
 to experiment with methods in other classes.
 
+### POS
+Contains one method, getPOS. Takes a string input and uses the Stanford NLP library
+to analyze the words in the input and return an ArrayList containing the part of
+speech values for each word in the input.
+
 ## Features
 * __Extra topic:__ _Daily Specials_
 
@@ -150,4 +155,9 @@ the model with more sample input to get a more accurate sentiment)
 
 * __Part of Speech Tagging__
 
-TODO!!
+POS.getPOS returns the part of speech values for each word in the user's input.
+Bot.receiveQuery calls getPOS on the first word of the user's input, and if it
+is a verb other than "tell" and "say", returns a message to the user indicating
+that they cannot fill the user's request.
+
+![Spellcheck Example](/img/pos_example.png)
