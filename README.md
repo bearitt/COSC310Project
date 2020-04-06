@@ -3,14 +3,7 @@ A chatbot coded in Java
 
 ## Instructions
 
-To compile and run the code, add the appropriate script to the src folder
-(follow directions in runme_scripts/readme.txt) and follow the directions
-to run the program in the terminal.
-
-**_Note:_ to run the runme scripts, your system must have the [JDK installed](https://www.oracle.com/java/technologies/javase-downloads.html)
- and your [path variables](https://www.java.com/en/download/help/path.xml) in your system must be set properly to point to
- your Java install. Without these steps, the scripts will throw an error. This program _will not_ run in Eclipse because
- of the use of the Console class.**
+Code must be run in Eclipse or any other Java IDE (tested on Eclipse).
 
 ## Classes
 ### Conversation
