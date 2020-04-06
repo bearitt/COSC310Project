@@ -45,7 +45,7 @@ determined by Question.isQuestion). respond contains if statements to
 determine the appropriate response to a user input. help types out a short
 manual for the user
 
-### Products
+### Product
 Contains methods pertaining to the list of products in the store. getProducts
 returns a HashMap with key value pair (product name,current stock). productsSold
 returns a Hashmap with key value pair (product name, amount sold to date).
@@ -54,3 +54,51 @@ products to date. featuredProducts returns a string array with the three product
 currently featured by the store (in current implementation, this corresponds
 to the first three products in the list. Future implementations will allow
 choosing products to feature).
+
+### Lemma
+Contains a single method lemmatize which takes a string input, uses the Stanford
+NLP library to split the string into the words that make up the sentence, then
+uses a stemming algorithm to return an ArrayList containing the word stems
+in the sentence. The algorithm seems to work similarly to the Porter Stemmer
+algorithm, but does not perform as effectively (e.g. the output for "translation"
+is "translation" instead of "translate").
+
+### Levenshtein Distance
+A helper class for spellcheck. Contains a single method computeDistance which
+determines the Levenshtein distance between two words (i.e. the number of additions,
+subtractions and/or substitutions needed to convert the first word into the second
+word).
+
+### Spellcheck
+Performs spellcheck analysis for user inputs. Two static variables are used, a
+string dictfile which indicates a filepath containing a dictionary of words to
+use in checking spelling, and an ArrayList wordlist which contains the words in
+the file indicated by dictfile. The loadDictionary method loads the dictionary file
+into memory and stores it in wordlist. The wordSuggestor method takes a word,
+calculates the Levenshtein distance against all the words in the dictionary, then
+adds the matches to an ArrayList newlist if the distance is less than 3 (this
+could be any value; because of the relatively small size of our dictionary, we
+wanted to minimize the chance the algorithm would convert a correctly spelled
+word that is not in the dictionary into a word in the dictionary, which would
+fundamentally change the meaning of the sentence). newlist is then sorted with
+the closest matches at the top, then the top match is returned. If newlist is
+empty, the original word is returned.
+
+### NERConfidence
+Employs the Named Entity Recognition algorithm from the Stanford NLP library. The
+getNamedEntityRecognition method <DOES SOME STUFF>. containsDate returns true if
+the string contains a date value, and containsPerson returns true if the string
+contains a person's name (the latter is unimplemented at this phase). getSpecial
+returns a string telling the user about daily specials based on their date query.
+
+### SentimentAnalyzer
+Contains a single method getStanfordSentimentRate which takes a string as an
+input then uses the Stanford NLP library to calculate a sentiment rating. Returns
+an integer value representing the rating with the following key:
+* rate < 0 : negative statement (e.g. "This app is a piece of garbage")
+* rate = 0 : neutral statement (e.g. "The capital of Alberta is Edmonton")
+* rate > 0 : positive statement (e.g. "This is the best app ever!")
+
+### Test
+Contains mostly garbage code not necessary for implemenation. A playground for us
+to experiment with methods in other classes.

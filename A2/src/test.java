@@ -106,29 +106,29 @@ public class test {
 //		String tagged = tagger.tagString(a);
 //		System.out.println(tagged);
 		
-		Properties props = new Properties();
-		props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
-		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-		String text = "John is going to the mall tomorrow night and it is sunny outside";
-		Annotation document = new Annotation(text);
-		pipeline.annotate(document);
-		List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
-		for(CoreMap sentence : sentences) {
-			for(CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-				String word = token.get(CoreAnnotations.TextAnnotation.class);
-				String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-				String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
-				System.out.printf("Print: word: [%s] pos: [%s] ne: [%s]\n", word, pos, ne);
-			}
-		}
-
+//		Properties props = new Properties();
+//		props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
+//		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+//		String text = "John is going to the mall tomorrow night and it is sunny outside";
+//		Annotation document = new Annotation(text);
+//		pipeline.annotate(document);
+//		List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+//		for(CoreMap sentence : sentences) {
+//			for(CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+//				String word = token.get(CoreAnnotations.TextAnnotation.class);
+//				String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+//				String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+//				System.out.printf("Print: word: [%s] pos: [%s] ne: [%s]\n", word, pos, ne);
+//			}
+//		}
+//
 		System.out.println(Lemma.lemmatize("are"));
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Hi! Say something");
 		String response = sc.nextLine().toLowerCase();
-		String query = response;
-		query = query.substring(0,query.length()-1);
-		System.out.println("Stripped query:\n--------\n" + query);
+//		String query = response;
+//		query = query.substring(0,query.length()-1);
+//		System.out.println("Stripped query:\n--------\n" + query);
 //		System.out.println(SentimentAnalyzer.getStanfordSentimentRate(response));
 		ArrayList<String> something = Bot.parse(response);
 //		for(String i : something) {
@@ -146,7 +146,6 @@ public class test {
 //			System.out.print(temp + " ");
 //		}
 		sc.close();
-
 	}
 
 }

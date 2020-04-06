@@ -26,7 +26,8 @@ public class NERConfidence {
     
     //See if string contains a date
     public static boolean containsDate(String checkForDate) {
-    	return getNamedEntityRecognition(checkForDate).contains("DATE");
+    	return getNamedEntityRecognition(checkForDate).contains("DATE") 
+    			|| getNamedEntityRecognition(checkForDate).contains("TIME");
     }
     //See if string contains person
     public static boolean containsPerson(String checkForPerson) {

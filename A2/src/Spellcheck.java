@@ -70,6 +70,9 @@ public class Spellcheck {
         		break;
         	}
         }
+        //if no close matches are found, return the original word
+        if(result.contentEquals(""))
+        	result = word;
         return result;
     }
 }

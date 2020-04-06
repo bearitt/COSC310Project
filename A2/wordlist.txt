@@ -1,3 +1,4 @@
+be
 where
 what
 how
@@ -26,7 +27,6 @@ member
 membership
 return
 exchange
-be
 service
 contact
 account
@@ -55,14 +55,11 @@ produce
 meat
 tell
 goodbye
-bye
 help
 hi
 hey
 hello
-the
 over
-be
 monday
 tuesday
 wednesday
@@ -75,3 +72,4 @@ today
 week
 next
 this
+be
