@@ -128,7 +128,7 @@ against a dictionary and return a correction if a match is found.
 
 ![Spellcheck Example](/img/spellcheck_example.png)
 
-# __Named Entity Recognition__
+* __Named Entity Recognition__
 
 NERConfidence.containsDate determines if the user's input contains a date value;
 if it does, it calls the getSpecial method to tell the user about the daily
