@@ -10,8 +10,6 @@ import java.util.ArrayList;
  */
 public class Response {
 	static String respond(ArrayList<String> sentence, String query) {
-		if(sentence.size() == 0)
-			return "Please say something!";
 		String[] greetings = {"hello", "hi", "hey"};
 		for(String e:greetings) {
 			if(sentence.contains(e))
@@ -37,5 +35,9 @@ public class Response {
 				+ "Hint: Ask me about my daily specials!"
 				;
 		return help;
-	}	
+	}
+	static String onlyARobot() {
+		String robot = "I'm a robot, not a miracle maker! I can't do that :(";
+		return robot;
+	}
 }

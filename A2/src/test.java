@@ -136,15 +136,22 @@ public class test {
 //		}
 //		System.out.println("Testing spellcheck on first word\n------------------------");
 //		System.out.println(Spellcheck.wordSuggester(something.get(0)));
-		System.out.println("Correcting spelling on entire sentence\n---------------------------");
-		for(String i : something)
-			System.out.print(i + " ");
+//		System.out.println("Correcting spelling on entire sentence\n---------------------------");
+//		for(String i : something)
+//			System.out.print(i + " ");
 //		ArrayList<String> output = new ArrayList<String>();
 //		for(int i = 0;i<something.size();++i) {
 //			String temp = Spellcheck.wordSuggester(something.get(i));
 //			output.add(temp);
 //			System.out.print(temp + " ");
 //		}
+		ArrayList<String> posValues = POS.getPOS(response);
+		for(String i : posValues) {
+			System.out.println(i);
+			if(i.charAt(0) == 'V')
+				System.out.println("Verb!");
+		}
+			
 		sc.close();
 	}
 

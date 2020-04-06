@@ -11,12 +11,17 @@ public class Bot {
 	void receiveQuery(String query) {
 		String response;
 		ArrayList<String> sentence = Bot.parse(query);
-		if(query.equals("help"))
+		if(sentence.size() == 0)
+			response = "Please say something!";
+		else if(query.equals("help"))
 			response = Response.help();
 		else if (NERConfidence.containsDate(query) || sentence.contains("daily") 
 				|| sentence.contains("special") || sentence.contains("bargain")
 				|| sentence.contains("deal"))
 			response = NERConfidence.getSpecial(sentence);
+		else if(!sentence.get(0).contentEquals("tell") && !sentence.get(0).contentEquals("say") 
+				&& POS.getPOS(query).get(0).charAt(0) == 'V')
+			response = Response.onlyARobot();
 		else if(Question.isQuestion(query))
 			response = Question.getQuestionType(sentence);
 		else

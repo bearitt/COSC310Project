@@ -43,7 +43,7 @@ public class NERConfidence {
 			return "On Wednesday we have store wide 5% off.";
     	if (findDate.contains("thursday"))
 			return "On Thursday we have no specials.";
-    	if (findDate.contains("friday"))
+    	if (findDate.contains("friday") || findDate.contains("today"))
 			return "On Friday we have 10% off steak.";
     	if (findDate.contains("saturday"))
 			return "On Saturday apples are 1$ each.";
