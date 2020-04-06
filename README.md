@@ -114,4 +114,4 @@ to experiment with methods in other classes.
 ## Features
 * __Extra topic:__ _Daily Specials_
 A list of daily specials which can be queried by the user.
-e.g.
+e.g. ![Specials Chat Example](/img/specials_example.png)
