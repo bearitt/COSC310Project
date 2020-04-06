@@ -118,12 +118,14 @@ to experiment with methods in other classes.
 * __Extra topic:__ _Daily Specials_
 
 A list of daily specials which can be queried by the user.
+
 ![Specials Chat Example](/img/specials_example.png)
 
 * __Spellcheck:__
 
 The LevenshteinDistance and Spellcheck classes compare words in the user's input
 against a dictionary and return a correction if a match is found.
+
 ![Spellcheck Example](/img/spellcheck_example.png)
 
 # __Named Entity Recognition__
@@ -132,6 +134,7 @@ NERConfidence.containsDate determines if the user's input contains a date value;
 if it does, it calls the getSpecial method to tell the user about the daily
 specials (note that in this implementation, "today" is treated as Friday rather
 than determining the system date. This can be changed in future implementations)
+
 ![Spellcheck Example](/img/ner_example.png)
 
 * __Sentiment Analysis__
@@ -142,6 +145,7 @@ for negative inputs and an encouragin message for positive inputs. Neutral input
 default to a prompt for clarification from the user. (Note from the example
 output that the analyzer isn't perfect. A future implementation could train
 the model with more sample input to get a more accurate sentiment)
+
 ![Spellcheck Example](/img/sentiment_example.png)
 
 * __Part of Speech Tagging__
