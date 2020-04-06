@@ -21,7 +21,11 @@ going until the user says "bye" or "goodbye".
 Receives the user input, then calls the appropriate class based on the input
 type in the receiveQuery method. The delayResponse method creates an ellipsis
 string for 1.5 seconds before the chatbot responds to simulate the chatbot
-typing a response to the user.
+typing a response to the user. The parse method calls Lemma.lemmatize to split
+the input sentence into word stems, then performs a spellcheck on every word in
+the sentence. receiveQuery calls Bot.parse, then uses a series of if statements
+to determine if the query is asking for help, if the query contains a date value
+(call NERConfidence.getSpecial), and whether or not the query is a question.
 
 ### Greeting
 Contains two methods to hail the user. The hello method returns a greeting
@@ -37,13 +41,17 @@ method according to whether the question is a "where", "what", "how", "when", "w
 or "who" question. The method defaults to otherQuestion if the question does not
 fall into one of those categories. whereQuestion, whatQuestion, howQuestion,
 whenQuestion, whichQuestion and whoQuestion contain the responses to the user query
-and use a series of if statements to determine the appropriate response.
+and use a series of if statements to determine the appropriate response. Note that
+in the latest version of the program, implementation of the question methods take
+an ArrayList (parsed in Bot.receiveQuery) as input. Some conditionals had to be
+moved around with this new implementation to ensure accurate responses.
 
 ### Response
 Contains methods for responding to user inputs that are not questions (as
 determined by Question.isQuestion). respond contains if statements to
-determine the appropriate response to a user input. help types out a short
-manual for the user
+determine the appropriate response to a user input, including a check to determine
+the sentiment of the statement using SentimentAnalyzer. help types out a short
+manual for the user.
 
 ### Product
 Contains methods pertaining to the list of products in the store. getProducts
@@ -100,5 +108,10 @@ an integer value representing the rating with the following key:
 * rate > 0 : positive statement (e.g. "This is the best app ever!")
 
 ### Test
-Contains mostly garbage code not necessary for implemenation. A playground for us
+Contains mostly garbage code not necessary for implementation. A playground for us
 to experiment with methods in other classes.
+
+## Features
+* __Extra topic:__ _Daily Specials_
+A list of daily specials which can be queried by the user.
+e.g.

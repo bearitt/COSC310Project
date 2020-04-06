@@ -17,9 +17,7 @@ public class Question {
 		return false;
 	}
 	//uses first word of question to determine type of question
-	static String getQuestionType(ArrayList<String> sentence) {
-//		String[] questionSplit = question.split(" ");
-		
+	static String getQuestionType(ArrayList<String> sentence) {		
 		String response;
 		switch(sentence.get(0)) {
 		case "where":
