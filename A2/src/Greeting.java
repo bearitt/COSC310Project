@@ -26,6 +26,7 @@ public class Greeting {
 				System.out.printf("%s", spinner[i]);
 				Thread.sleep(1000);
 			}
+			System.exit(0);
 		} catch(InterruptedException e) {
 			System.out.printf("Sorry, something went wrong on our end! Closing program...");
 		}

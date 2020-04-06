@@ -14,13 +14,15 @@ public class Conversation {
 		System.out.printf("Enter your question (type \"Help\" for more information): ");
 		Scanner in = new Scanner(System.in);
 		String question = in.nextLine().toLowerCase();
+		String response;
 		while(!question.contentEquals("bye") && !question.contentEquals("goodbye")) {
-			chatbot.receiveQuery(question);
+			response = chatbot.receiveQuery(question);
+			System.out.println(response);
 			System.out.printf("You: ");
 			question = in.nextLine().toLowerCase();
 		}
 		//Greeting.goodbye();
-		System.out.println("Ok bye.");
+		System.out.println("Chatbot: Thanks for chatting with me, goodbye!");
 		in.close();
 	}
 

@@ -15,7 +15,11 @@ public class Response {
 			if(sentence.contains(e))
 				return Greeting.hello();
 		}
-
+		
+		String extraResponse = extraTopics(query);
+		if(!extraResponse.contentEquals(""))
+			return extraResponse;
+		
 		//This calls the Sentiment Analyzer to determine if the statement 
 		//is positive or negative and responds appropriately
 		
@@ -39,5 +43,28 @@ public class Response {
 	static String onlyARobot() {
 		String robot = "I'm a robot, not a miracle maker! I can't do that :(";
 		return robot;
+	}
+	
+	private static String extraTopics(String query) {
+		//feature: five responses to queries unrelated to the main topic
+		
+				if (query.toLowerCase().contains("music")) {
+					return "Motorhead rules!";
+				}
+				else if (query.toLowerCase().contains("joke")) {
+					return "Do you remember that joke I told you about my spine?"
+							+ " It was about a weak back!";
+				}
+				else if (query.toLowerCase().contains("basketball") || query.toLowerCase().contains("nba")) {
+					return "Go Raptors!";
+				}
+				else if (query.toLowerCase().contains("wine")) {
+					return "I love a good pinot noir!";
+				}
+				else if (query.toLowerCase().contains("movie") || query.toLowerCase().contains("film")) {
+					return "I cried in Twilight! Team Jacob for life.";
+				}
+				else
+					return "";
 	}
 }

@@ -120,6 +120,7 @@ to analyze the words in the input and return an ArrayList containing the part of
 speech values for each word in the input.
 
 ## Features
+
 * __Extra topic:__ _Daily Specials_
 
 A list of daily specials which can be queried by the user.
@@ -140,7 +141,7 @@ if it does, it calls the getSpecial method to tell the user about the daily
 specials (note that in this implementation, "today" is treated as Friday rather
 than determining the system date. This can be changed in future implementations)
 
-![Spellcheck Example](/img/ner_example.png)
+![Named Entity Example](/img/ner_example.png)
 
 * __Sentiment Analysis__
 
@@ -151,7 +152,7 @@ default to a prompt for clarification from the user. (Note from the example
 output that the analyzer isn't perfect. A future implementation could train
 the model with more sample input to get a more accurate sentiment)
 
-![Spellcheck Example](/img/sentiment_example.png)
+![Sentiment Analysis Example](/img/sentiment_example.png)
 
 * __Part of Speech Tagging__
 
@@ -160,4 +161,18 @@ Bot.receiveQuery calls getPOS on the first word of the user's input, and if it
 is a verb other than "tell" and "say", returns a message to the user indicating
 that they cannot fill the user's request.
 
-![Spellcheck Example](/img/pos_example.png)
+![Part of Speech Example](/img/pos_example.png)
+
+* __Five Extra Topics__
+
+The chatbot has five new responses coded in about wine, basketball, movies, music,
+and a joke.
+
+![Extra Topics Example](/img/five_extras_example.png)
+
+* __GUI__
+
+The chatbot has a simple GUI designed using Swing and Jframes. It is still in
+a beta phase, and so does not have full functionality.
+
+![GUI Example](/img/gui_example.png)

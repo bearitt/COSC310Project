@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Bot {
 	//Console console = System.console();
 	//method for receiving input from the user through standard in
-	void receiveQuery(String query) {
+	String receiveQuery(String query) {
 		String response;
 		ArrayList<String> sentence = Bot.parse(query);
 		if(sentence.size() == 0)
@@ -27,8 +27,9 @@ public class Bot {
 		else
 			response = Response.respond(sentence, query);
 		//delayResponse();
-		System.out.print("Chatbot: ");
-		System.out.print(response + "\n");
+		return "Chatbot: " + response;
+//		System.out.print("Chatbot: ");
+//		System.out.print(response + "\n");
 	}
 	
 	//usage: to create the revolving ellipsis simulating the chatbot "typing" input to the user 
