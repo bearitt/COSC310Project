@@ -11,7 +11,10 @@ public class Conversation {
 		SentimentAnalyzer.getStanfordSentimentRate("");
 		Bot chatbot = new Bot();
 		//Console console = System.console();
-		System.out.printf("Enter your question (type \"Help\" for more information): ");
+		System.out.println("Enter your question (type \"Help\" for more information): ");
+		System.out.println("(Warning: the response to your first question will take a few seconds"
+				+ " to load. Please be patient!)");
+		System.out.printf("You: ");
 		Scanner in = new Scanner(System.in);
 		String question = in.nextLine().toLowerCase();
 		String response;
